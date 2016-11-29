@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+{% include 'head.html' %}
+
+<body>
+{% include 'navigator.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% include 'sidebar.html' %}
+
+        <!--/span-->
+        {% include 'content.html' %}
+    </div>
+    {% include 'modal.html' %}
+    {% include 'script.html' %}
+</body>
+
+</html>

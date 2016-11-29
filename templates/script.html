@@ -1,0 +1,6 @@
+<script>
+    $('#myModal').on('show.bs.modal', function (e) {
+        $(this).find('#confirmdelete').attr('href', $(e.relatedTarget).data('href'));
+        document.getElementById('caname').innerHTML = $(e.relatedTarget).data('href').split('/')[2];
+    });
+</script>

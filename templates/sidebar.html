@@ -1,0 +1,46 @@
+<div class="col-md-3">
+    <div class="well sidebar-nav">
+        <ul class="nav nav-list">
+            <li>
+                <form role="form" action="/newbookmark" method="post">
+                    <div class="form-group">
+                        <label for="name">bookmark</label>
+                        <div class="form-group">
+                            <select class="form-control" id="catalogselect" name='catalogselect'>
+                                {% for ca in cas %}
+                                    <option>{{ ca.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <p>
+                            <input type="text" class="form-control" id="markname" name='markname'
+                                   placeholder="bookmark name">
+                        </p>
+                        <p>
+                            <input type="text" class="form-control" id="linkadd" name='linkadd'
+                                   placeholder="link address">
+                        </p>
+                    </div>
+                    <button type="submit" class="btn btn-default btn-block">ADD</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <div class="well sidebar-nav">
+        <ul class="nav nav-list">
+            <li>
+                <form role="form" action="/newcatalog" method="post">
+                    <div class="form-group">
+                        <label for="name">catalog</label>
+                        <p>
+                            <input type="text" class="form-control" id="catalog" name='catalog'
+                                   placeholder="catalog name">
+                        </p>
+                    </div>
+                    <button type="submit" class="btn btn-default btn-block">ADD</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <!--/.well -->
+</div>

@@ -32,7 +32,6 @@ def index():
         links = get_links(doc['name'], owner)
         item = {'ca': doc['name'], 'caid': doc['_id'], 'links': links}
         links_list.append(item)
-    print links_list
 
     return render_template('index.html', cas=docs, links=links_list)
 
@@ -52,7 +51,6 @@ def login():
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
-        print username, password
         if check_password(username, password):
             user = User(username)
             login_user(user)
@@ -79,7 +77,6 @@ def register():
 @login_required
 def new_catalog():
     if request.form['catalog']:
-        print request.form['catalog']
         owner = current_user.username
         doc = {'name': request.form['catalog'], 'owner': owner}
         save_catalog(doc)
@@ -110,7 +107,6 @@ def del_bookmark(objid):
 @app.route('/delcatalog/<ca>')
 @login_required
 def del_catalog(ca):
-    print ca
     owner = current_user.username
     delete_bookmark(None, ca)
     delete_catalogs(ca, owner)

@@ -25,35 +25,35 @@ def save_links(doc):
         print "link %s saved" %(doc['name'])
 
 
-def get_catalogs():
+def get_catalogs(owner):
     client = MongoClient(ip, 27017)
     db = client.bookmarks
     cas = db.catalogs
-    docs = cas.find()
+    docs = cas.find({'owner': owner})
     docs = list(docs)
     return docs
 
 
-def delete_catalogs(ca):
+def delete_catalogs(ca, owner):
     client = MongoClient(ip, 27017)
     db = client.bookmarks
     cas = db.catalogs
-    cas.remove({'name': ca, 'owner': ''})
+    cas.remove({'name': ca, 'owner': owner})
 
 
-def get_links(ca=None):
+def get_links(ca=None, owner=None):
     client = MongoClient(ip, 27017)
     db = client.bookmarks
     links = db.links
     if not ca:
-        docs = links.find()
+        docs = links.find({'owner': owner})
     else:
-        docs = links.find({'catalog': ca})
+        docs = links.find({'catalog': ca, 'owner': owner})
     docs = list(docs)
     return docs
 
 
-def delete_bookmark(objid=None, ca=None):
+def delete_bookmark(objid=None, ca=None, owner=None):
     client = MongoClient(ip, 27017)
     db = client.bookmarks
     links = db.links
@@ -61,6 +61,6 @@ def delete_bookmark(objid=None, ca=None):
         print 'link id %s' %objid
         links.remove({'_id': ObjectId(objid)})
     if ca:
-        links.remove({'catalog': ca, 'owner': ''})
+        links.remove({'catalog': ca, 'owner': owner})
         print 'bookmarks belongs to %s are deleted' % ca
     return

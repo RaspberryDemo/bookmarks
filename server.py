@@ -36,6 +36,21 @@ def index():
     return render_template('index.html', cas=docs, links=links_list)
 
 
+@app.route('/ca/<caname>')
+@login_required
+def filter_ca(caname):
+    owner = current_user.username
+    alldoc = get_catalogs(owner)
+    docs = get_catalogs_by_ca(caname, owner)
+    links_list = []
+    for doc in docs:
+        links = get_links(doc['name'], owner)
+        item = {'ca': doc['name'], 'caid': doc['_id'], 'links': links}
+        links_list.append(item)
+
+    return render_template('index.html', cas=alldoc, links=links_list)
+
+
 @app.route('/logout')
 @login_required
 def logout():

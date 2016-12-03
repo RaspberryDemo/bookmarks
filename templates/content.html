@@ -2,10 +2,13 @@
     {% for link in links %}
         <table class="table table-striped table-hover">
             <caption>
+                <a href="/ca/{{ link.ca }}" data-href="/delcatalog/{{ link.ca }}" class="btn btn-success btn-xs"> {{ link.ca }}<span
+                        class="glyphicon glyphicon-eye-open"></span></a>
+
+
                 <a href="#" data-href="/delcatalog/{{ link.ca }}" class="btn btn-warning btn-xs"
-                   data-toggle="modal" data-target="#myModal"
-                   style="background: gainsboro; border-color: gainsboro; color: black">{{ link.ca }} <span
-                        class="glyphicon glyphicon-off"></span></a>
+                   data-toggle="modal" data-target="#myModal"> {{ link.ca }}<span
+                        class="glyphicon glyphicon-off" style="width: 10px"></span></a>
             </caption>
             <thead>
             <tr>

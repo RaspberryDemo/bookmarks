@@ -22,6 +22,12 @@ def get_catalogs(owner):
     return docs
 
 
+def get_catalogs_by_ca(ca, owner):
+    docs = cas.find({'name': ca, 'owner': owner})
+    docs = list(docs)
+    return docs
+
+
 def delete_catalogs(ca, owner):
     cas.remove({'name': ca, 'owner': owner})
 

@@ -1,11 +1,7 @@
 #!/usr/bin/python
 from pymongo import *
 from bson import ObjectId
-from config import ip, port
-
-
-cas = MongoClient(ip, port).bookmarks.catalogs
-links = MongoClient(ip, port).bookmarks.links
+from config import cas, links
 
 
 def save_catalog(doc):

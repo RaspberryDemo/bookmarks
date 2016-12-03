@@ -108,7 +108,7 @@ def del_bookmark(objid):
 @login_required
 def del_catalog(ca):
     owner = current_user.username
-    delete_bookmark(None, ca)
+    delete_bookmark(None, ca, owner)
     delete_catalogs(ca, owner)
     return redirect('/')
 

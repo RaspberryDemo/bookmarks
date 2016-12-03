@@ -2,10 +2,7 @@
 from pymongo import *
 from bson import ObjectId
 from flask_login import UserMixin
-from config import ip, port
-
-
-userdb = MongoClient(ip, port).bookmarks.users
+from config import userdb
 
 
 def add_user(username, password):

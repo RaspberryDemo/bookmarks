@@ -2,10 +2,10 @@
 from pymongo import *
 from bson import ObjectId
 from flask_login import UserMixin
+from config import ip, port
 
-ip = '192.168.0.105'
 
-userdb = MongoClient(ip, 27017).bookmarks.users
+userdb = MongoClient(ip, port).bookmarks.users
 
 
 def add_user(username, password):
@@ -21,6 +21,7 @@ def check_password(username, password):
         return True
     print 'not found'
     return False
+
 
 class User(UserMixin):
     def __init__(self, username):

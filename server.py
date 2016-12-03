@@ -1,6 +1,6 @@
 from flask import Flask, flash, request, redirect, render_template
 from flask_bootstrap import Bootstrap
-from mongo import save_catalog, get_catalogs, save_links, get_links, delete_bookmark, delete_catalogs
+from datastore import *
 from userdb import *
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 

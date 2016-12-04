@@ -51,6 +51,26 @@ def filter_ca(caname):
     return render_template('index.html', cas=alldoc, links=links_list)
 
 
+@app.route('/search', methods=['POST'])
+@login_required
+def search_wildcard_links():
+    key = request.form['searchkey']
+    owner = current_user.username
+    allcas = get_catalogs(owner)
+    alllinks = get_links_wildcard(key, owner)
+    alllinks = list(alllinks)
+    cas = []
+    for doc in alllinks:
+        if doc['catalog'] not in cas:
+            cas.append(doc['catalog'])
+    links_list = []
+    for ca in cas:
+        links = [link for link in alllinks if ca == link['catalog']]
+        item = {'ca': ca, 'caid': 'unknown', 'links': links}
+        links_list.append(item)
+    return render_template('index.html', cas=allcas, links=links_list)
+
+
 @app.route('/logout')
 @login_required
 def logout():

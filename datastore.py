@@ -41,6 +41,11 @@ def get_links(ca=None, owner=None):
     return docs
 
 
+def get_links_wildcard(name, owner):
+    docs = links.find({'name': {'$regex': name}, 'owner': owner})
+    return docs
+
+
 def delete_bookmark(objid=None, ca=None, owner=None):
     if objid:
         links.remove({'_id': ObjectId(objid)})

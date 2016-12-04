@@ -42,7 +42,7 @@ def get_links(ca=None, owner=None):
 
 
 def get_links_wildcard(name, owner):
-    docs = links.find({'name': {'$regex': name}, 'owner': owner})
+    docs = links.find({'name': {'$regex': name, '$options': '-i'}, 'owner': owner})
     return docs
 
 

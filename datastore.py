@@ -52,3 +52,17 @@ def delete_bookmark(objid=None, ca=None, owner=None):
     if ca:
         links.remove({'catalog': ca, 'owner': owner})
     return
+
+
+def update_bookmark(objid, catalog, alias, link):
+    result = links.update_one({'_id': ObjectId(objid)}, {'$set': {'catalog': catalog,
+                                                                  'name': alias, 'link': link}})
+    return
+
+
+def get_link_by_id(objid):
+    docs = links.find({'_id': ObjectId(objid)})
+    docs = list(docs)
+    if len(docs):
+        return docs[0]
+    return None

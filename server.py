@@ -139,6 +139,27 @@ def del_bookmark(objid):
     return redirect('/')
 
 
+@app.route('/editbookmark/<objid>', methods=['GET', 'POST'])
+@login_required
+def edit_bookmark(objid):
+    owner = current_user.username
+    docs = get_catalogs(owner)
+    link = get_link_by_id(objid)
+
+    from forms import EditBookmarkForm
+    eform = EditBookmarkForm(catalogs_choice=link['catalog'], alias=link['name'], link=link['link'])
+    eform.catalogs_choice.choices = [(d['name'], d['name']) for d in docs]
+
+    action = '/editbookmark/%s' % (objid)
+
+    if eform.validate_on_submit():
+
+        update_bookmark(objid, eform.catalogs_choice.data, eform.alias.data, eform.link.data)
+        return redirect('/')
+
+    return render_template('editbookmark.html', form=eform, action=action)
+
+
 @app.route('/delcatalog/<ca>')
 @login_required
 def del_catalog(ca):

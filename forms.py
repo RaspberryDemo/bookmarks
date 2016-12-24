@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, SelectField
 from wtforms.validators import DataRequired, EqualTo, Length
 
 
@@ -17,3 +17,10 @@ class RegisterForm(FlaskForm):
     ])
     confirm = PasswordField('Repeat Password')
     submit = SubmitField(label='Signup')
+
+
+class EditBookmarkForm(FlaskForm):
+    catalogs_choice = SelectField('Catalogs')
+    alias = StringField(validators=[DataRequired()])
+    link = StringField(validators=[DataRequired()])
+    submit = SubmitField(label='SAVE')

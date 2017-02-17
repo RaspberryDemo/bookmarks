@@ -127,7 +127,8 @@ def new_bookmark():
     owner = current_user.username
 
     if catalog_select and markname and linkadd:
-        doc = {'name': markname, 'catalog': catalog_select, 'link': linkadd, 'owner': owner}
+        doc = {'name': markname, 'catalog': catalog_select,
+               'link': linkadd, 'owner': owner, 'comments': ''}
         save_links(doc)
     return redirect('/')
 
@@ -147,14 +148,14 @@ def edit_bookmark(objid):
     link = get_link_by_id(objid)
 
     from forms import EditBookmarkForm
-    eform = EditBookmarkForm(catalogs_choice=link['catalog'], alias=link['name'], link=link['link'])
+    eform = EditBookmarkForm(catalogs_choice=link['catalog'], alias=link['name'],
+                             link=link['link'], comments=link['comments'])
     eform.catalogs_choice.choices = [(d['name'], d['name']) for d in docs]
 
     action = '/editbookmark/%s' % (objid)
 
     if eform.validate_on_submit():
-
-        update_bookmark(objid, eform.catalogs_choice.data, eform.alias.data, eform.link.data)
+        update_bookmark(objid, eform.catalogs_choice.data, eform.alias.data, eform.link.data, eform.comments.data)
         return redirect('/')
 
     return render_template('editbookmark.html', form=eform, action=action)

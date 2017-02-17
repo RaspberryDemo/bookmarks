@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, SelectField
+from wtforms import StringField, PasswordField, SubmitField, SelectField, TextAreaField
 from wtforms.validators import DataRequired, EqualTo, Length
 
 
@@ -23,4 +23,5 @@ class EditBookmarkForm(FlaskForm):
     catalogs_choice = SelectField('Catalogs')
     alias = StringField(validators=[DataRequired()])
     link = StringField(validators=[DataRequired()])
+    comments = TextAreaField('Comments', render_kw={"rows": 6, "cols": 11})
     submit = SubmitField(label='SAVE')

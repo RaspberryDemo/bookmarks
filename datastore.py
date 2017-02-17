@@ -54,9 +54,10 @@ def delete_bookmark(objid=None, ca=None, owner=None):
     return
 
 
-def update_bookmark(objid, catalog, alias, link):
+def update_bookmark(objid, catalog, alias, link, comments):
     result = links.update_one({'_id': ObjectId(objid)}, {'$set': {'catalog': catalog,
-                                                                  'name': alias, 'link': link}})
+                                                                  'name': alias, 'link': link,
+                                                                  'comments': comments}})
     return
 
 

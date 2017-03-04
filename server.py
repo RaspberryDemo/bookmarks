@@ -98,7 +98,7 @@ def register():
 def new_catalog():
     if request.form['catalog']:
         owner = current_user.username
-        doc = {'name': request.form['catalog'], 'owner': owner}
+        doc = {'name': request.form['catalog'], 'owner': owner, 'priority': 0}
         save_catalog(doc)
     return redirect('/')
 
@@ -113,7 +113,7 @@ def new_bookmark():
 
     if catalog_select and markname and linkadd:
         doc = {'name': markname, 'catalog': catalog_select,
-               'link': linkadd, 'owner': owner, 'comments': ''}
+               'link': linkadd, 'owner': owner, 'comments': '', 'priority': 0}
         save_links(doc)
     return redirect('/')
 
